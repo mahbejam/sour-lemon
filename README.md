@@ -1,5 +1,8 @@
 # 🍋 Sour Lemon
 
+<p align="center">
+  <img src="assets/screenshots/hero.png" alt="Sour Lemon Hero" width="100%">
+</p>
 AI-powered enterprise knowledge platform for intelligent information retrieval, operational decision support, and organizational knowledge management.
 
 Sour Lemon is a product concept exploring how AI can help organizations transform scattered internal knowledge into structured, searchable, and reusable intelligence.
@@ -66,3 +69,30 @@ Planned next steps:
 ```bash
 npm install
 npm run dev
+```
+---
+
+
+# Screenshots
+
+## Product Vision
+
+![Vision](assets/screenshots/vision.png)
+
+---
+
+## System Architecture
+
+![Architecture](assets/screenshots/architecture.png)
+
+---
+
+## AI Agents
+
+![AI Agents](assets/screenshots/agents.png)
+
+---
+
+## Demo
+
+![Demo](assets/screenshots/demo.png)
