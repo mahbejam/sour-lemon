@@ -96,3 +96,11 @@ npm run dev
 ## Demo
 
 ![Demo](assets/screenshots/demo.png)
+
+## Credits
+
+Original idea and product concept by Mahbube bubeh.
+
+Designed and developed by Mahbejam.
+
+This project was created as part of a creative software engineering portfolio.
