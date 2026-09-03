@@ -286,7 +286,7 @@ export default function SuccessStories() {
                   fontSize: "32px", fontWeight: 800,
                   color: "rgba(255,209,0,0.2)",
                   lineHeight: 0.6, marginBottom: "10px",
-                }}>"</div>
+                }}>&quot;</div>
                 <p style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: "13.5px", color: "rgba(255,255,255,0.65)",

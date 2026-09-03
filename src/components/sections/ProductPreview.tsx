@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactElement } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const PANELS = [
@@ -19,6 +20,9 @@ const SIDEBAR_ITEMS = [
 ];
 
 function KnowledgeSearch() {
+  const [query, setQuery] = useState("What is the validated cleaning procedure for Reactor B?");
+  const [searched, setSearched] = useState(false);
+
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", gap: "16px" }}>
       {/* Search bar */}
@@ -29,12 +33,8 @@ function KnowledgeSearch() {
         boxShadow: "0 0 20px rgba(255,209,0,0.05)",
       }}>
         <span style={{ color: "rgba(255,209,0,0.6)", fontSize: "14px" }}>⌕</span>
-        <span style={{ fontFamily: "'Courier New',monospace", fontSize: "12px", color: "rgba(255,255,255,0.55)" }}>
-          What is the validated cleaning procedure for Reactor B?
-        </span>
-        <div style={{ marginLeft: "auto", background: "#FFD100", borderRadius: "6px", padding: "3px 10px" }}>
-          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "10px", fontWeight: 700, color: "#000" }}>ASK</span>
-        </div>
+        <input aria-label="Knowledge search" value={query} onChange={e => setQuery(e.target.value)} onKeyDown={e => { if (e.key === "Enter") setSearched(true); }} style={{ flex: 1, minWidth: 0, background: "transparent", border: 0, padding: 0, color: "rgba(255,255,255,0.7)", fontFamily: "'Courier New',monospace", fontSize: "12px", outline: 0 }} />
+        <button type="button" onClick={() => setSearched(true)} aria-label="Run knowledge search" style={{ marginLeft: "auto", background: "#FFD100", border: 0, borderRadius: "6px", padding: "5px 10px", fontFamily: "'Inter',sans-serif", fontSize: "10px", fontWeight: 700, color: "#000", cursor: "pointer" }}>ASK</button>
       </div>
 
       {/* Answer block */}
@@ -46,8 +46,9 @@ function KnowledgeSearch() {
           <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#FFD100", boxShadow: "0 0 6px #FFD100" }} />
           <span style={{ fontFamily: "'Courier New',monospace", fontSize: "9px", letterSpacing: "2px", color: "rgba(255,209,0,0.6)" }}>KNOWLEDGE AGENT · RESPONSE</span>
         </div>
-        <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 14px" }}>
-          Per <strong style={{ color: "#FFD100" }}>SOP-MFG-0047 Rev. 3</strong> (approved 2024-11-12), Reactor B requires a 3-stage validated cleaning sequence following any β-lactam batch:
+          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 14px" }}>
+          {searched ? <>For <strong style={{ color: "#FFD100" }}>{query || "your query"}</strong>, the demo returned the closest traceable procedure:</> : null}
+          {!searched && <>Per <strong style={{ color: "#FFD100" }}>SOP-MFG-0047 Rev. 3</strong> (approved 2024-11-12), Reactor B requires a 3-stage validated cleaning sequence following any β-lactam batch:</>}
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "14px" }}>
           {["Pre-rinse with WFI at 65°C — 15 min", "CIP with 2% NaOH solution — 30 min", "Final WFI rinse + swab test (< 10 ppm)"].map((s, i) => (
@@ -85,6 +86,8 @@ function KnowledgeSearch() {
 }
 
 function AIChat() {
+  const [message, setMessage] = useState("");
+  const [sent, setSent] = useState<string[]>([]);
   const messages = [
     { role: "user", text: "Show me all open deviations in Q4 2024 related to temperature excursions." },
     { role: "agent", text: "I found 7 open deviations matching that criteria. The most critical is DEV-2024-0412 (Batch 8821-B, +2.3°C excursion, assigned to QA team). Three others are pending root cause analysis.", sources: ["DEV-LOG-Q4", "BATCH-8821", "QA-TRACKER"] },
@@ -95,7 +98,7 @@ function AIChat() {
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100%", gap: "10px" }}>
       <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "10px" }}>
-        {messages.map((m, i) => (
+        {[...messages, ...sent.map(text => ({ role: "user" as const, text, sources: undefined }))].map((m, i) => (
           <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: m.role === "user" ? "flex-end" : "flex-start" }}>
             {m.role === "user" ? (
               <div style={{
@@ -132,16 +135,14 @@ function AIChat() {
           </div>
         ))}
       </div>
-      <div style={{
+      <form onSubmit={e => { e.preventDefault(); if (message.trim()) { setSent(current => [...current, message.trim()]); setMessage(""); } }} style={{
         background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)",
         borderRadius: "8px", padding: "10px 14px",
         display: "flex", alignItems: "center", gap: "8px",
       }}>
-        <span style={{ fontFamily: "'Inter',sans-serif", fontSize: "12px", color: "rgba(255,255,255,0.25)", flex: 1 }}>Ask the platform anything…</span>
-        <div style={{ width: "24px", height: "24px", borderRadius: "6px", background: "#FFD100", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "11px", color: "#000" }}>↑</span>
-        </div>
-      </div>
+        <input aria-label="Ask the platform" value={message} onChange={e => setMessage(e.target.value)} placeholder="Ask the platform anything..." style={{ flex: 1, minWidth: 0, background: "transparent", border: 0, padding: 0, color: "rgba(255,255,255,0.7)", fontFamily: "'Inter',sans-serif", fontSize: "12px", outline: 0 }} />
+        <button type="submit" aria-label="Send message" style={{ width: "24px", height: "24px", borderRadius: "6px", background: "#FFD100", border: 0, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}><span style={{ fontSize: "11px", color: "#000" }}>↑</span></button>
+      </form>
     </div>
   );
 }
@@ -241,7 +242,7 @@ function ExecPanel() {
   );
 }
 
-const PANEL_COMPONENTS: Record<string, JSX.Element> = {
+const PANEL_COMPONENTS: Record<string, ReactElement> = {
   search: <KnowledgeSearch />,
   chat:   <AIChat />,
   ticket: <TicketPanel />,

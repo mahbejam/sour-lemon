@@ -17,10 +17,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
   return (
     <>
       <nav
@@ -77,13 +73,13 @@ export default function Navbar() {
           {/* CTA buttons */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="/login"
+              href="#book-demo"
               className="px-4 py-2 text-sm font-medium text-[#8888A4] hover:text-[#EEEEF2] transition-colors duration-200"
             >
-              Sign In
+              Talk to us
             </Link>
             <Link
-              href="/contact"
+              href="#book-demo"
               className="inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-xl bg-[#F5E020] text-[#04040C] transition-all duration-300 hover:bg-[#FFE840] hover:shadow-[0_0_24px_rgba(245,224,32,0.4)] active:scale-[0.97]"
             >
               Book a Demo
@@ -154,13 +150,13 @@ export default function Navbar() {
 
           <div className="mt-auto flex flex-col gap-3">
             <Link
-              href="/login"
+              href="#book-demo"
               className="w-full text-center px-5 py-3 rounded-xl border border-white/[0.1] text-sm font-medium text-[#EEEEF2] hover:border-white/[0.2] transition-colors"
             >
-              Sign In
+              Talk to us
             </Link>
             <Link
-              href="/contact"
+              href="#book-demo"
               className="w-full text-center px-5 py-3 rounded-xl bg-[#F5E020] text-[#04040C] text-sm font-bold hover:bg-[#FFE840] transition-colors"
             >
               Book a Demo

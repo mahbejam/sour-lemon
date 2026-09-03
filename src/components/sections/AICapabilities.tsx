@@ -88,7 +88,7 @@ export default function AICapabilities() {
             <div className="mb-5 p-4 rounded-xl bg-[rgba(245,224,32,0.06)] border border-[rgba(245,224,32,0.1)]">
               <p className="text-xs text-[#505068] mb-2 font-mono">AI Knowledge Assistant</p>
               <p className="text-[#EEEEF2] text-sm">
-                "What is the maximum allowed deviation for in-process pH control in Batch B-2024-1103?"
+                &quot;What is the maximum allowed deviation for in-process pH control in Batch B-2024-1103?&quot;
               </p>
             </div>
 

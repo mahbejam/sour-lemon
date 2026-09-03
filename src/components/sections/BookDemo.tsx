@@ -349,7 +349,7 @@ export default function BookDemo() {
                   fontSize: "11px", color: "rgba(255,255,255,0.2)",
                   textAlign: "center", margin: "14px 0 0", lineHeight: 1.6,
                 }}>
-                  By submitting you agree to our Privacy Policy. No spam, ever.
+                  This portfolio demo stores nothing and sends no data. Submission is simulated locally.
                 </p>
               </form>
             )}

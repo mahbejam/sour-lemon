@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sourlemon.ai",
+    url: "https://mahbejam.github.io/sour-lemon/",
     siteName: "SOUR LEMON",
     title: "SOUR LEMON — AI Operational Intelligence Platform",
     description: "Complexity becomes intelligence. AI-powered platform for enterprise operations.",

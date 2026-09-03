@@ -246,7 +246,7 @@ export default function BusinessImpact() {
                 fontSize: "13px", color: "rgba(255,255,255,0.5)",
                 lineHeight: 1.65, margin: 0, fontStyle: "italic",
               }}>
-                "The ROI was visible within 6 weeks of deployment. We reduced onboarding time from 5 months to 3 weeks."
+                &quot;The ROI was visible within 6 weeks of deployment. We reduced onboarding time from 5 months to 3 weeks.&quot;
                 <span style={{ display: "block", marginTop: "6px", color: "rgba(255,255,255,0.3)", fontStyle: "normal", fontSize: "11px" }}>— Head of Operations, Global Pharma Company</span>
               </p>
             </div>

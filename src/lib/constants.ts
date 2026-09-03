@@ -3,45 +3,45 @@ export const SITE = {
   tagline: "Complexity becomes intelligence.",
   description:
     "AI-powered Operational Intelligence Platform that helps enterprises reduce complexity, automate workflows, preserve knowledge and accelerate onboarding.",
-  url: "https://sourlemon.ai",
+  url: "https://mahbejam.github.io/sour-lemon/",
   email: "hello@sourlemon.ai",
 };
 
 export const NAV_LINKS = [
-  { label: "Platform",    href: "/platform" },
-  { label: "Use Cases",   href: "/use-cases" },
-  { label: "Case Studies",href: "/case-studies" },
+  { label: "Platform",    href: "/#platform" },
+  { label: "Use Cases",   href: "/#use-cases" },
+  { label: "Case Studies",href: "/#stories" },
   { label: "About",       href: "/about" },
-  { label: "Pricing",     href: "/pricing" },
+  { label: "Pricing",     href: "/#impact" },
 ] as const;
 
 export const FOOTER_LINKS = {
   Platform: [
-    { label: "AI Knowledge Assistant", href: "/platform#knowledge" },
-    { label: "Process Intelligence",   href: "/platform#process" },
-    { label: "Workflow Automation",    href: "/platform#workflow" },
-    { label: "AI Agent Platform",      href: "/platform#agents" },
-    { label: "Predictive Analytics",   href: "/platform#analytics" },
+    { label: "AI Knowledge Assistant", href: "/#preview" },
+    { label: "Process Intelligence",   href: "/#platform" },
+    { label: "Workflow Automation",    href: "/#platform" },
+    { label: "AI Agent Platform",      href: "/#agents" },
+    { label: "Predictive Analytics",   href: "/#impact" },
   ],
   "Use Cases": [
-    { label: "Pharma & Life Sciences", href: "/use-cases/pharma" },
-    { label: "GMP Manufacturing",      href: "/use-cases/manufacturing" },
-    { label: "Automotive",             href: "/use-cases/automotive" },
-    { label: "Healthcare",             href: "/use-cases/healthcare" },
-    { label: "Finance",                href: "/use-cases/finance" },
+    { label: "Pharma & Life Sciences", href: "/#use-cases" },
+    { label: "GMP Manufacturing",      href: "/#use-cases" },
+    { label: "Automotive",             href: "/#industries" },
+    { label: "Healthcare",             href: "/#industries" },
+    { label: "Finance",                href: "/#industries" },
   ],
   Company: [
     { label: "About",         href: "/about" },
-    { label: "Blog",          href: "/blog" },
-    { label: "Case Studies",  href: "/case-studies" },
-    { label: "Pricing",       href: "/pricing" },
-    { label: "Contact",       href: "/contact" },
+    { label: "Blog",          href: "/about#principles" },
+    { label: "Case Studies",  href: "/#stories" },
+    { label: "Pricing",       href: "/#impact" },
+    { label: "Contact",       href: "/#book-demo" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "/legal/privacy" },
-    { label: "Terms of Service", href: "/legal/terms" },
-    { label: "Security",         href: "/legal/security" },
-    { label: "GDPR",             href: "/legal/gdpr" },
+    { label: "Privacy Policy", href: "/about#principles" },
+    { label: "Terms of Service", href: "/about#principles" },
+    { label: "Security",         href: "/#platform" },
+    { label: "GDPR",             href: "/#platform" },
   ],
 } as const;
 

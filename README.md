@@ -9,6 +9,10 @@ Sour Lemon is a product concept exploring how AI can help organizations transfor
 
 > Current status: Frontend demo / work in progress
 
+## Live Demo
+
+Visit the interactive portfolio demo at [mahbejam.github.io/sour-lemon](https://mahbejam.github.io/sour-lemon/).
+
 ## Overview
 
 Organizations often have valuable information distributed across documents, systems, teams, and informal processes. Sour Lemon is designed as a concept platform that demonstrates how this knowledge can become easier to find, understand, and use.
@@ -30,12 +34,29 @@ Sour Lemon is built around a simple principle:
 - Product-oriented frontend architecture
 - Scalable UI foundation
 
+## Application Features
+
+- Cinematic animated hero with keyboard-accessible stage navigation
+- Responsive navigation with working section links and demo CTAs
+- Interactive platform preview with knowledge search, assistant chat, ticket automation, and executive insight views
+- Expandable product architecture and agent surfaces
+- Illustrative success stories with switchable scenarios
+- Responsive demo request form with browser validation and a local success state
+- Reduced dependency on unavailable backend services: search, chat, and form submission use simulated sample data in the browser
+- Static-export configuration for the GitHub Pages project URL
+
 ## Technology Stack
 
 - Next.js
 - React
 - TypeScript
 - Tailwind CSS
+- Framer Motion
+- Radix UI primitives
+- Lucide React
+- Zustand
+
+The current demo has no backend. Form submissions are intentionally simulated locally and are not stored or transmitted.
 
 ## Project Status
 
@@ -70,6 +91,14 @@ Planned next steps:
 npm install
 npm run dev
 ```
+
+To create the GitHub Pages-ready static output:
+
+```bash
+npm run build
+```
+
+The exported site is written to `out/` and is configured for `/sour-lemon/`.
 ---
 
 

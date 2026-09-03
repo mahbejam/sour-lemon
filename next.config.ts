@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  basePath: "/sour-lemon",
+  assetPrefix: "/sour-lemon/",
+  trailingSlash: true,
 };
 
 export default nextConfig;

@@ -15,14 +15,14 @@ export default function HomePage() {
     <main>
       <CinematicHero />
       <WhySourLemon />
-      <UseCases />
-      <Industries />
-      <PlatformArchitecture />
-      <AIAgents />
-      <ProductPreview />
-      <BusinessImpact />
-      <SuccessStories />
-      <BookDemo />
+      <div id="use-cases"><UseCases /></div>
+      <div id="industries"><Industries /></div>
+      <div id="platform"><PlatformArchitecture /></div>
+      <div id="agents"><AIAgents /></div>
+      <div id="preview"><ProductPreview /></div>
+      <div id="impact"><BusinessImpact /></div>
+      <div id="stories"><SuccessStories /></div>
+      <div id="book-demo"><BookDemo /></div>
       <Footer />
     </main>
   );

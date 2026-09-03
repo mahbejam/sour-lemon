@@ -103,8 +103,7 @@ export default function Footer() {
                 {col.items.map(item => (
                   <div key={item} style={{ marginBottom: "11px" }}>
                     <a
-                      href="#"
-                      onClick={e => e.preventDefault()}
+                        href={item === "Contact" ? "#book-demo" : item === "Documentation" ? "#preview" : item === "Security" ? "#platform" : item === "AI Agents" ? "#agents" : item === "Knowledge Intelligence" ? "#preview" : item === "Automation" ? "#platform" : item === "Analytics" ? "#impact" : item === "Pharma" || item === "Manufacturing" || item === "Automotive" || item === "Enterprise IT" ? "#industries" : "/about#principles"}
                       style={{
                         fontFamily: "'Inter', sans-serif",
                         fontSize: "13px", fontWeight: 400,

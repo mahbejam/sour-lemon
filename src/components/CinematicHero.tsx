@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Platform",   href: "/platform" },
-  { label: "Use Cases",  href: "/use-cases" },
+  { label: "Platform",   href: "/#platform" },
+  { label: "Use Cases",  href: "/#use-cases" },
   { label: "About",      href: "/about" },
-  { label: "Pricing",    href: "/pricing" },
+  { label: "Pricing",    href: "/#impact" },
   { label: "Contact",    href: "/#book-demo" },
 ];
 
@@ -19,7 +19,7 @@ export default function CinematicHero() {
   const h1Ref     = useRef<HTMLHeadingElement>(null);
   const subRef    = useRef<HTMLParagraphElement>(null);
   const ctaRef    = useRef<HTMLDivElement>(null);
-  const mctaRef   = useRef<HTMLButtonElement>(null);
+  const mctaRef   = useRef<HTMLAnchorElement>(null);
   const snameRef  = useRef<HTMLSpanElement>(null);
   const dotsRef   = useRef<HTMLDivElement>(null);
 
@@ -84,7 +84,7 @@ export default function CinematicHero() {
         LEMON_CTX.putImageData(d, 0, 0);
         LEMON_READY = true;
       };
-      img.src = "/lemon.jpg";
+      img.src = new URL("lemon.jpg", window.location.href).toString();
     })();
 
     // ── PARTICLES ─────────────────────────────────────────────────
@@ -209,7 +209,13 @@ export default function CinematicHero() {
     SD.forEach((_, i) => {
       const d = document.createElement("div");
       d.className = "sd" + (i === 0 ? " on" : "");
+      d.setAttribute("role", "button");
+      d.setAttribute("aria-label", `Show stage ${i + 1}`);
+      d.setAttribute("tabindex", "0");
       d.style.cssText = `height:2px;border-radius:2px;background:${i===0?"#F5E020":"#1A1A28"};width:${i===0?"28px":"8px"};cursor:pointer;transition:all .5s;`;
+      const chooseStage = () => { setPhase(i); updateDots(i); };
+      d.addEventListener("click", chooseStage);
+      d.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") chooseStage(); });
       dotsEl.appendChild(d);
     });
     function updateDots(n: number) {
@@ -618,8 +624,8 @@ export default function CinematicHero() {
             </Link>
           ))}
           <div className="cmob-footer">
-            <button className="cmob-cta" onClick={() => setMenuOpen(false)}>Get a demo</button>
-            <button className="cmob-cta2" onClick={() => setMenuOpen(false)}>Learn more</button>
+            <a className="cmob-cta" href="#book-demo" onClick={() => setMenuOpen(false)}>Get a demo</a>
+            <a className="cmob-cta2" href="#platform" onClick={() => setMenuOpen(false)}>Learn more</a>
           </div>
         </div>
       </div>
@@ -670,19 +676,19 @@ export default function CinematicHero() {
           {/* Nav links — desktop only */}
           <div style={{ display: "flex", gap: "28px" }} className="cnav-links">
             {([
-              { label: "Platform",     href: "/platform" },
-              { label: "Use Cases",    href: "/use-cases" },
+              { label: "Platform",     href: "/#platform" },
+              { label: "Use Cases",    href: "/#use-cases" },
               { label: "About",        href: "/about" },
-              { label: "Pricing",      href: "/pricing" },
+              { label: "Pricing",      href: "/#impact" },
             ] as const).map(l => (
               <Link key={l.label} href={l.href} className="cnl" style={{ textDecoration: "none" }}>{l.label}</Link>
             ))}
           </div>
 
           {/* Desktop CTA */}
-          <button className="cbp cnav-cta-desk" style={{ fontSize: "13px", padding: "9px 20px", borderRadius: "5px" }}>
+          <a href="#book-demo" className="cbp cnav-cta-desk" style={{ fontSize: "13px", padding: "9px 20px", borderRadius: "5px" }}>
             Get a demo
-          </button>
+          </a>
 
           {/* Hamburger — mobile only */}
           <button
@@ -711,8 +717,8 @@ export default function CinematicHero() {
             The problem is that the answer is distributed across thousands of documents, systems, and people who may have left. Sour Lemon makes what you already know usable — at the moment a decision must be made.
           </p>
           <div ref={ctaRef} className="cctag">
-            <button ref={mctaRef} className="cbp">Request a demo</button>
-            <button className="cbg2">How it works →</button>
+            <a ref={mctaRef} href="#book-demo" className="cbp">Request a demo</a>
+            <a className="cbg2" href="#platform">How it works →</a>
           </div>
         </div>
 
