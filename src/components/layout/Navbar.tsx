@@ -90,7 +90,9 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/[0.05] transition-colors"
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             <span
               className={cn(
@@ -120,6 +122,8 @@ export default function Navbar() {
           "fixed inset-0 z-40 md:hidden transition-all duration-400",
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
+        id="mobile-navigation"
+        aria-hidden={!mobileOpen}
       >
         <div
           className="absolute inset-0 bg-[#04040C]/90 backdrop-blur-xl"
@@ -136,6 +140,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                  onClick={() => setMobileOpen(false)}
                 className={cn(
                   "px-4 py-3 rounded-xl text-base font-medium transition-all",
                   pathname === link.href
@@ -151,12 +156,14 @@ export default function Navbar() {
           <div className="mt-auto flex flex-col gap-3">
             <Link
               href="#book-demo"
+              onClick={() => setMobileOpen(false)}
               className="w-full text-center px-5 py-3 rounded-xl border border-white/[0.1] text-sm font-medium text-[#EEEEF2] hover:border-white/[0.2] transition-colors"
             >
               Talk to us
             </Link>
             <Link
               href="#book-demo"
+              onClick={() => setMobileOpen(false)}
               className="w-full text-center px-5 py-3 rounded-xl bg-[#F5E020] text-[#04040C] text-sm font-bold hover:bg-[#FFE840] transition-colors"
             >
               Book a Demo

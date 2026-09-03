@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import Link from "next/link";
 
 const NAV_LINKS = [
@@ -10,6 +10,15 @@ const NAV_LINKS = [
   { label: "Pricing",    href: "/#impact" },
   { label: "Contact",    href: "/#book-demo" },
 ];
+
+function scrollToSection(event: ReactMouseEvent<HTMLAnchorElement>, href: string, closeMenu?: () => void) {
+  if (!href.includes("#")) return;
+  event.preventDefault();
+  closeMenu?.();
+  const id = href.slice(href.indexOf("#") + 1);
+  window.history.pushState(null, "", `#${id}`);
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export default function CinematicHero() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -611,21 +620,35 @@ export default function CinematicHero() {
       >
         <div className="cmob-inner">
           {NAV_LINKS.map(link => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="cmob-link"
-              onClick={() => setMenuOpen(false)}
-              tabIndex={menuOpen ? 0 : -1}
-              style={{ textDecoration: "none" }}
-            >
-              {link.label}
-              <span className="cmob-arr">→</span>
-            </Link>
+            link.href.includes("#") ? (
+              <a
+                key={link.label}
+                href={link.href.replace("/#", "#")}
+                className="cmob-link"
+                onClick={event => scrollToSection(event, link.href, () => setMenuOpen(false))}
+                tabIndex={menuOpen ? 0 : -1}
+                style={{ textDecoration: "none" }}
+              >
+                {link.label}
+                <span className="cmob-arr">→</span>
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="cmob-link"
+                onClick={() => setMenuOpen(false)}
+                tabIndex={menuOpen ? 0 : -1}
+                style={{ textDecoration: "none" }}
+              >
+                {link.label}
+                <span className="cmob-arr">→</span>
+              </Link>
+            )
           ))}
           <div className="cmob-footer">
-            <a className="cmob-cta" href="#book-demo" onClick={() => setMenuOpen(false)}>Get a demo</a>
-            <a className="cmob-cta2" href="#platform" onClick={() => setMenuOpen(false)}>Learn more</a>
+            <a className="cmob-cta" href="#book-demo" onClick={event => scrollToSection(event, "#book-demo", () => setMenuOpen(false))}>Get a demo</a>
+            <a className="cmob-cta2" href="#platform" onClick={event => scrollToSection(event, "#platform", () => setMenuOpen(false))}>Learn more</a>
           </div>
         </div>
       </div>
@@ -650,10 +673,10 @@ export default function CinematicHero() {
           background: "rgba(2,2,8,.82)",
           borderBottom: "1px solid rgba(255,255,255,.05)",
           flexWrap: "nowrap", gap: "16px",
-          position: "relative", zIndex: 60,
+          position: "fixed", top: 0, left: 0, right: 0, zIndex: 60,
         }}>
           {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+          <a href="#home" aria-label="Sour Lemon home" onClick={event => scrollToSection(event, "#home")} style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
             <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
               <line x1="32" y1="32" x2="12" y2="14" stroke="#F5E020" strokeWidth=".8" opacity=".5"/>
               <line x1="32" y1="32" x2="52" y2="14" stroke="#F5E020" strokeWidth=".8" opacity=".5"/>
@@ -671,17 +694,21 @@ export default function CinematicHero() {
               <text x="32" y="37" textAnchor="middle" fontFamily="'Segoe UI',Arial,sans-serif" fontWeight="800" fontSize="14" fill="#F5E020" letterSpacing="-0.5">SL</text>
             </svg>
             <span style={{ fontWeight: 700, fontSize: "15px", color: "#EEEEF2", letterSpacing: ".5px" }}>SOUR LEMON</span>
-          </div>
+          </a>
 
           {/* Nav links — desktop only */}
           <div style={{ display: "flex", gap: "28px" }} className="cnav-links">
-            {([
+            {([ 
               { label: "Platform",     href: "/#platform" },
               { label: "Use Cases",    href: "/#use-cases" },
               { label: "About",        href: "/about" },
               { label: "Pricing",      href: "/#impact" },
             ] as const).map(l => (
-              <Link key={l.label} href={l.href} className="cnl" style={{ textDecoration: "none" }}>{l.label}</Link>
+              l.href.includes("#") ? (
+                <a key={l.label} href={l.href.replace("/#", "#")} onClick={event => scrollToSection(event, l.href)} className="cnl" style={{ textDecoration: "none" }}>{l.label}</a>
+              ) : (
+                <Link key={l.label} href={l.href} className="cnl" style={{ textDecoration: "none" }}>{l.label}</Link>
+              )
             ))}
           </div>
 

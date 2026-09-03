@@ -12,7 +12,7 @@ import Footer from "@/components/sections/Footer";
 
 export default function HomePage() {
   return (
-    <main>
+    <main id="home">
       <CinematicHero />
       <WhySourLemon />
       <div id="use-cases"><UseCases /></div>

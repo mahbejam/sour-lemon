@@ -21,8 +21,37 @@ a { text-decoration: none; color: inherit; }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 78px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+[id] { scroll-margin-top: 78px; }
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 70;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(245,224,32,0.3);
+  border-radius: 10px;
+  background: rgba(4,4,12,0.86);
+  color: #F5E020;
+  font: 700 18px/1 var(--font-mono);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  backdrop-filter: blur(16px);
+}
+.back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+.back-to-top:hover { background: rgba(245,224,32,0.12); }
+.back-to-top:focus-visible { outline: 2px solid #F5E020; outline-offset: 3px; }
+@media (max-width: 680px) {
+  .back-to-top { right: 16px; bottom: 16px; width: 40px; height: 40px; }
 }
 
 body {
